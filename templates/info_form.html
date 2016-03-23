@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link type="text/css" rel="stylesheet" href="/static/css/weui.css"/>
+    <style type="text/css">
+        body {
+            background-color: #FBF9FE;
+        }
+
+        .weui_label {
+            width: 5em;
+        }
+    </style>
+    <script type="text/javascript">
+        function submitForm() {
+            document.getElementById("info_form").submit();
+        }
+    </script>
+    <title>info_collector</title>
+</head>
+<body>
+<div class="weui_text_area">
+    <h3>请输入个人通讯信息</h3>
+</div>
+<form id="info_form" method="post">
+    {% csrf_token %}
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_bd">
+                <label class="weui_label">姓名</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="name" type="text" placeholder="请输入姓名"/>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd">
+                <label class="weui_label">手机号码</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="phone" type="tel" placeholder="请输入手机号码"/>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd">
+                <label class="weui_label">电子邮箱</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="phone" type="email" placeholder="请输入电子邮箱"/>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="weui_btn_area">
+    <a class="weui_btn weui_btn_primary" id="button" onclick="submitForm()">提交</a>
+</div>
+
+</body>
+</html>
