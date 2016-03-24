@@ -19,5 +19,5 @@ from webapp.views import add_info
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
-    url(r'^info_add/', add_info),
+    url(r'^$', add_info),
 ]
