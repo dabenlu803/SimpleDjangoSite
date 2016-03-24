@@ -14,7 +14,6 @@ def add_info(request):
         cd = form.cleaned_data
         personalinfo = PersonalInfo()
         personalinfo.Name = cd['name']
-        personalinfo.Sex = cd['sex']
         personalinfo.PhoneNum = cd['phoneNum']
         personalinfo.Email = cd['email']
         personalinfo.Job = cd['job']
@@ -23,7 +22,7 @@ def add_info(request):
         personalinfo.save()
         return HttpResponseRedirect('/add_info_success/')
     else:
-        return render_to_response('info_add.html', context_instance=RequestContext(request))
+        return render_to_response('add_info.html', context_instance=RequestContext(request))
 
 
 def add_info_success(request):
