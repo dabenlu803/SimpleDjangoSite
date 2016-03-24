@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <link type="text/css" rel="stylesheet" href="/static/css/weui.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/weui.min.css"/>
     <style type="text/css">
         body {
             background-color: #FBF9FE;
@@ -15,16 +15,13 @@
     </style>
     <script type="text/javascript">
         function submitForm() {
-            document.getElementById("info_form").submit();
+            document.getElementById("my_form").submit();
         }
     </script>
-    <title>info_collector</title>
+    <title>Add contact info</title>
 </head>
 <body>
-<div class="weui_text_area">
-    <h3>请输入个人通讯信息</h3>
-</div>
-<form id="info_form" method="post">
+<form id="my_form" method="post">
     {% csrf_token %}
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
@@ -37,10 +34,18 @@
         </div>
         <div class="weui_cell">
             <div class="weui_cell_bd">
+                <label class="weui_label">性别</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="sex" type="text" placeholder="请输入性别"/>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd">
                 <label class="weui_label">手机号码</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" name="phone" type="tel" placeholder="请输入手机号码"/>
+                <input class="weui_input" name="phoneNum" type="tel" placeholder="请输入常用手机号码"/>
             </div>
         </div>
         <div class="weui_cell">
@@ -48,14 +53,38 @@
                 <label class="weui_label">电子邮箱</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" name="phone" type="email" placeholder="请输入电子邮箱"/>
+                <input class="weui_input" name="email" type="email" placeholder="请输入常用邮箱地址"/>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd">
+                <label class="weui_label">工作地点</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="location" type="text" placeholder="请输入工作城市"/>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd">
+                <label class="weui_label">所属行业</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="job" type="text" placeholder="请所属行业"/>
+            </div>
+        </div>
+        <div class="weui_cell">
+            <div class="weui_cell_bd">
+                <label class="weui_label">工作公司</label>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" name="company" type="text" placeholder="请输入所属公司"/>
             </div>
         </div>
     </div>
+    <div class="weui_btn_area">
+        <a class="weui_btn weui_btn_primary" id="button" href="javascript:;" onclick="submitForm()">提交</a>
+    </div>
 </form>
-<div class="weui_btn_area">
-    <a class="weui_btn weui_btn_primary" id="button" onclick="submitForm()">提交</a>
-</div>
 
 </body>
 </html>
