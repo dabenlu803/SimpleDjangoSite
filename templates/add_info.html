@@ -13,14 +13,9 @@
             width: 5em;
         }
     </style>
-    <script type="text/javascript">
-        function submitForm() {
-            document.getElementById("my_form").submit();
-        }
-    </script>
     <title>Add contact info</title>
 </head>
-<body>
+<body ontouchstart="">
 <form id="my_form" method="post">
     {% csrf_token %}
     <div class="weui_cells weui_cells_form">
@@ -37,7 +32,7 @@
                 <label class="weui_label">手机号码</label>
             </div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" name="phoneNum" type="tel" placeholder="请输入常用手机号码"/>
+                <input class="weui_input" name="phoneNum" type="text" placeholder="请输入常用手机号码"/>
             </div>
         </div>
         <div class="weui_cell">
@@ -74,9 +69,43 @@
         </div>
     </div>
     <div class="weui_btn_area">
-        <a class="weui_btn weui_btn_primary" id="button" href="javascript:;" onclick="submitForm()">提交</a>
+        <a class="weui_btn weui_btn_primary" id="button" href="javascript:;">提交</a>
     </div>
 </form>
+<script type="text/javascript" src="/static/js/zepto.min.js"></script>
+<script type="text/javascript" src="/static/js/weui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#button').on('click', function (e) {
+            var $form = $('form');
+            var pairs = $form.serialize().split(/&/gi);
+            var data = {};
+            pairs.forEach(function (pair) {
+                pair = pair.split('=');
+                data[pair[0]] = decodeURIComponent(pair[1] || '');
+            });
+            if (!data.name) {
+                $.weui.topTips('请输入姓名',2000);
+                var $topTips = $('error_top_tip');
+                $topTips.show();
+                return;
+            }
+            if (!data.phoneNum || !/^1[3,5,7,8]\d{9}$/.test(data.phoneNum)) {
+                $.weui.topTips('请输入正确的手机号码', 2000);
+                var $topTips = $('error_top_tip');
+                $topTips.show();
+                return;
+            }
+            if (!data.email) {
+                $.weui.topTips('请输入电子邮箱', 2000);
+                var $topTips = $('error_top_tip');
+                $topTips.show();
+                return;
+            }
+            $form.submit();
+        })
 
+    })
+</script>
 </body>
 </html>
